@@ -18,3 +18,5 @@ with
       from GDWS_SYS_USER t where t.AREA_ID like '520624%' group by t.USER_NAME, t.REAL_NAME, t.INS_ID
   )
 select a.*, b.* from TB_CHSS_GRJBXX_ a join GDWS_SYS_USER_ b on a.JDYSXM = b.REAL_NAME; 
+
+select t.SFJLID from TB_JBGL_GXYSQSFGL t group by t.SFJLID having count(t.SFJLID) > 1; --查询重复记录
