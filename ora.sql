@@ -20,3 +20,14 @@ with
 select a.*, b.* from TB_CHSS_GRJBXX_ a join GDWS_SYS_USER_ b on a.JDYSXM = b.REAL_NAME; 
 
 select t.SFJLID from TB_JBGL_GXYSQSFGL t group by t.SFJLID having count(t.SFJLID) > 1; --查询重复记录
+
+-- 判断字符串是否为数字
+CREATE OR REPLACE FUNCTION IS_NUMBER (str_ VARCHAR2 ) RETURN VARCHAR2
+IS num_ NUMBER;
+BEGIN
+  num_ := to_number(str_);
+  RETURN 'Y';
+  EXCEPTION
+  WHEN OTHERS THEN
+  RETURN 'N';
+END IS_NUMBER;
