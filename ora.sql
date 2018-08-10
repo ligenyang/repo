@@ -31,3 +31,6 @@ BEGIN
   WHEN OTHERS THEN
   RETURN 'N';
 END IS_NUMBER;
+
+--查询数据库最大连接数
+select value from v$parameter where name = 'processes';
