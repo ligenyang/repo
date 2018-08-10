@@ -34,3 +34,5 @@ END IS_NUMBER;
 
 --查询数据库最大连接数
 select value from v$parameter where name = 'processes';
+--修改数据库最大连接数为300
+alter system set processes = 300 scope = spfile;
