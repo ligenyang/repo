@@ -36,3 +36,6 @@ END IS_NUMBER;
 select value from v$parameter where name = 'processes';
 --修改数据库最大连接数为300
 alter system set processes = 300 scope = spfile;
+
+--列转行
+SELECT T.PARENT_ID, WMSYS.WM_CONCAT(T.ID) ID FROM GDWS_SYS_HOSP T CONNECT BY PRIOR T.ID = T.PARENT_ID START WITH T.PARENT_ID = '9470201' AND T.FLAG = 0 AND T.STATUS = 0 GROUP BY T.PARENT_ID;
