@@ -2,7 +2,6 @@ select s.username, l.object_id, l.session_id, s.serial#, s.lockwait, s.status, s
 select sql_text from v$sql where hash_value in (select sql_hash_value from v$session where sid in (select session_id from v$locked_object));
 alter system kill session '68,24231'; --SID,serial#
 
-
 with
     TB_CHSS_GRJBXX_ as ( 
       select
@@ -39,3 +38,7 @@ alter system set processes = 300 scope = spfile;
 
 --列转行
 SELECT T.PARENT_ID, WMSYS.WM_CONCAT(T.ID) ID FROM GDWS_SYS_HOSP T CONNECT BY PRIOR T.ID = T.PARENT_ID START WITH T.PARENT_ID = '9470201' AND T.FLAG = 0 AND T.STATUS = 0 GROUP BY T.PARENT_ID;
+
+select TRUNC(TO_DATE('2018-09-14', 'YYYY-MM-DD'), 'YYYY') CUR_FIRST_DAY, -- 查询日期年初
+TO_CHAR(TO_DATE('2018-09-14', 'YYYY-MM-DD'), 'Q') CUR_QUARTER -- 查询日期季度
+from dua
