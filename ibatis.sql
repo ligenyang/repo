@@ -12,6 +12,20 @@ from      (select '<isNotEmpty property="' || lower(substr(column_name,1,1)) || 
           order by column_id)
 start with column_id=1 connect by column_id=rownum;
 
+--updateAll
+select '<update id="updateAll" parameterClass="GDWS_CMC_PSY">
+<![CDATA[ UPDATE GDWS_CMC_PSY T ]]>
+          <dynamic prepend="SET">
+        <![CDATA[
+            ' || REPLACE(WM_CONCAT(COLUMN_NAME), '#,', '#
+            ') || ' ]]>
+</dynamic>
+<dynamic prepend="WHERE"><![CDATA[ T.ID = #id:String# ]]></dynamic>
+</update>' col
+from (select 'T.' || upper(column_name) || ' = #' || lower(substr(column_name, 1, 1)) || substr(REGEXP_REPLACE(INITCAP(column_name), '(\w)[_]', '\1'),2) || '#,' as COLUMN_NAME, column_id
+from sys.user_tab_columns where table_name='GDWS_CMC_PSY'order by column_id)
+start with column_id=1 connect by column_id=rownum;
+
 --get
   select * from [TABLE_NAME] t where t.id = #id#;
 
