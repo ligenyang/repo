@@ -1,15 +1,14 @@
 --update
 select '<update id="update" parameterClass="">
-<![CDATA[ UPDATE [TABLE_NAME] ]]>
+<![CDATA[ UPDATE GDWS_FUM_PSY ]]>
         <dynamic prepend="SET">
         ' || REPLACE(WM_CONCAT(COLUMN_NAME),'>,', '>
 ') || '
 </dynamic>
 <dynamic prepend="WHERE"><![CDATA[ ID = #id:String#]]></dynamic>
-</update>' col 
-from      (select '<isNotEmpty property="' || lower(substr(column_name,1,1)) ||  substr(REGEXP_REPLACE(INITCAP(column_name), '(\w)[_]', '\1'),2) || '" prepend=","><![CDATA[  '|| upper(column_name) || '=#' || lower(substr(column_name,1,1)) ||  substr(REGEXP_REPLACE(INITCAP(column_name), '(\w)[_]', '\1'),2) || '# ]]></isNotEmpty>' as COLUMN_NAME,column_id 
-          from sys.user_tab_columns  where table_name='[TABLE_NAME]' 
-          order by column_id)
+</update>' col
+from (select '<isNotEmpty property="' || lower(substr(column_name, 1, 1)) || substr(REGEXP_REPLACE(INITCAP(column_name), '(\w)[_]', '\1'), 2) || '" prepend=","><![CDATA[ T.'|| upper(column_name) || ' = #' || lower(substr(column_name, 1, 1)) || substr(REGEXP_REPLACE(INITCAP(column_name), '(\w)[_]', '\1'), 2) || '# ]]></isNotEmpty>' as COLUMN_NAME, column_id
+from sys.user_tab_columns where table_name='GDWS_FUM_PSY' order by column_id)
 start with column_id=1 connect by column_id=rownum;
 
 --updateAll
