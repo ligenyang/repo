@@ -41,4 +41,11 @@ SELECT T.PARENT_ID, WMSYS.WM_CONCAT(T.ID) ID FROM GDWS_SYS_HOSP T CONNECT BY PRI
 
 select TRUNC(TO_DATE('2018-09-14', 'YYYY-MM-DD'), 'YYYY') CUR_FIRST_DAY, -- 查询日期年初
 TO_CHAR(TO_DATE('2018-09-14', 'YYYY-MM-DD'), 'Q') CUR_QUARTER -- 查询日期季度
-from dua
+from dua;
+
+
+select * from v$version; -- 查询数据库版本信息
+select * from v$pdbs; -- 查询所有可插拨数据库
+alter pluggable database ORCLPDB open; -- 打开可插拨数据库
+alter session set container = ORCLPDB; -- 
+grant dba to WORLD_USER;
