@@ -49,3 +49,20 @@ select * from v$pdbs; -- 查询所有可插拨数据库
 alter pluggable database ORCLPDB open; -- 打开可插拨数据库
 alter session set container = ORCLPDB; -- 
 grant dba to WORLD_USER;
+                                                                                                   
+SELECT SYSDATE FROM DUAL; -- 当前时间 2018-11-13 15:53:07
+SELECT TRUNC(SYSDATE) FROM DUAL; -- 当前时间 2018-11-13 00:00:00
+SELECT TRUNC(SYSDATE,'YY') FROM DUAL; -- 当年第一天 2018-01-01 00:00:00
+SELECT TRUNC(SYSDATE,'MM') FROM DUAL; -- 当月第一天 2018-11-01 00:00:00
+SELECT TRUNC(SYSDATE,'D') FROM DUAL; -- 当前星期第一天 (星期天) 2018-11-11 00:00:00
+SELECT TRUNC(SYSDATE,'DD') FROM DUAL; -- 当前日期 2018-11-13 00:00:00
+SELECT TRUNC(SYSDATE ,'HH24') FROM DUAL; -- 当前小时的开始时间 2018-11-13 15:00:00
+SELECT TRUNC(SYSDATE ,'MI') FROM DUAL; -- 当前分钟的开始时间 2018-11-13 15:57:00
+SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD') FROM DUAL; -- 当前日期 2018-11-13
+SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') FROM DUAL; -- 当前时间 (24小时制) 2018-11-13 16:13:50
+SELECT TO_CHAR(SYSDATE, 'YYYY') FROM DUAL; -- 当前年份 2018
+SELECT TO_CHAR(SYSDATE, 'Q') FROM DUAL; -- 当前季度 4
+SELECT TO_CHAR(SYSDATE, 'MM') FROM DUAL; -- 当前月份 11
+SELECT TO_CHAR(SYSDATE, 'D') FROM DUAL; -- 当前星期的第几天 3
+SELECT TO_CHAR(SYSDATE, 'DAY') FROM DUAL; -- 当前星期几 星期二
+SELECT TO_CHAR(SYSDATE, 'YYYY') || '-01-01' FROM DUAL; -- 当年第一天 2018-01-01
