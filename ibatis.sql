@@ -71,3 +71,10 @@ select '/**' || chr(10) || ' * ' || comments || chr(10) || ' */' || chr(10) ||
    left join user_col_comments b on a.table_name = b.table_name and a.COLUMN_NAME = b.column_name
    where a.table_name='GDWS_STOCK'
  order by column_id;
+                                                                                                                           
+--columns
+select '<sql id="columns">
+           <![CDATA[ ' || wm_concat('T.' || t.column_name) || ' ]]>
+       </sql>' column_name
+from user_tab_columns t
+where t.table_name = 'GDWS_CMC_PSY' order by t.column_name;
