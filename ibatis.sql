@@ -29,19 +29,18 @@ start with column_id=1 connect by column_id=rownum;
   select * from [TABLE_NAME] t where t.id = #id#;
 
 --insert
-  select '<insert id="insert" parameterClass="">
-<![CDATA[ INSERT INTO GDWS_FUM_PSY(' || (
-  SELECT MAX(SUBSTR(SYS_CONNECT_BY_PATH(COLUMN_NAME, ', '), 2)) COL FROM (
-  SELECT COLUMN_NAME, COLUMN_ID FROM SYS.USER_TAB_COLUMNS WHERE TABLE_NAME='GDWS_FUM_PSY')
-  START WITH COLUMN_ID = 1 CONNECT BY COLUMN_ID = ROWNUM
-) || ') 
-    VALUES (' || (
-  SELECT MAX(SUBSTR(SYS_CONNECT_BY_PATH(COLUMN_NAME, ', '), 2)) COL FROM (
-  SELECT '#' || LOWER(SUBSTR(COLUMN_NAME, 1, 1)) || SUBSTR(REGEXP_REPLACE(INITCAP(COLUMN_NAME), '(\W)[_]', '\1'), 2) || '#' AS COLUMN_NAME, COLUMN_ID FROM SYS.USER_TAB_COLUMNS WHERE TABLE_NAME = 'GDWS_FUM_PSY')
-  START WITH COLUMN_ID = 1 CONNECT BY COLUMN_ID = ROWNUM
+select '<insert id="insert" parameterClass="">
+<![CDATA[ INSERT INTO GDWS_FUM_PSY (' || (
+select max(substr(SYS_CONNECT_BY_PATH(a.COLUMN_NAME, ','), 2)) col from (
+select t.COLUMN_NAME, t.column_id from sys.user_tab_columns t where table_name = 'GDWS_FUM_PSY') a start with a.column_id = 1 connect by a.column_id = rownum
+) || ')
+     VALUES (' || (
+select max(substr(SYS_CONNECT_BY_PATH(a.COLUMN_NAME, ','),2)) col from (
+select '#' || lower(substr(t.column_name, 1, 1)) || substr(REGEXP_REPLACE(INITCAP(t.column_name), '(\w)[_]', '\1'), 2) ||'#' as COLUMN_NAME, t.column_id from sys.user_tab_columns t where t.table_name = 'GDWS_FUM_PSY') a
+start with a.column_id = 1 connect by a.column_id = rownum
 ) || ') ]]>
 </insert>'
- from dual;
+from dual;
  
 --insertList
  select '<insert id="" parameterClass="">
