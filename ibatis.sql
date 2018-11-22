@@ -83,3 +83,16 @@ select '<sql id="columns">
        </sql>' column_name
 from user_tab_columns t
 where t.table_name = 'GDWS_CMC_PSY' order by t.column_name;
+                                                                                                                                      
+--insert2
+select '<insert id="insert" parameterClass="">
+<![CDATA[ INSERT INTO GDWS_FUM_PSY (' || (
+select wm_concat(a.COLUMN_NAME) from (
+select t.COLUMN_NAME from sys.user_tab_columns t where t.TABLE_NAME = 'GDWS_FUM_PSY' order by t.COLUMN_ID) a
+) || ')
+        VALUES (' || (
+select wm_concat(a.COLUMN_NAME) from (
+select '#' || lower(substr(t.column_name, 1, 1)) || substr(replace(INITCAP(t.column_name), '_', ''), 2) || '#' COLUMN_NAME from sys.user_tab_columns t where t.TABLE_NAME = 'GDWS_FUM_PSY' order by t.COLUMN_ID) a
+) || ') ]]>
+</insert>'
+from dual;
