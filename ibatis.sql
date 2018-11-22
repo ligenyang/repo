@@ -72,6 +72,12 @@ select '/**' || chr(10) || ' * ' || comments || chr(10) || ' */' || chr(10) ||
    where a.table_name='GDWS_STOCK'
  order by column_id;
                                                                                                                            
+-- entity
+select 'private ' || (case when data_scale > 0 then 'Double ' when data_scale = 0 then 'Integer ' else 'String ' end) || lower(substr(a.column_name, 1, 1)) || substr(REGEXP_REPLACE(INITCAP(a.column_name), '(\w)[_]', '\1'), 2) || '; //' || comments from sys.user_tab_columns a 
+left join user_col_comments b on a.table_name = b.table_name and a.COLUMN_NAME = b.column_name
+where a.table_name='GDWS_FUM_PSY'
+order by column_id;
+                                                                                                                                      
 --columns
 select '<sql id="columns">
            <![CDATA[ ' || wm_concat('T.' || t.column_name) || ' ]]>
