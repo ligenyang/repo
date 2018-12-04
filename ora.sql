@@ -49,6 +49,19 @@ select * from v$pdbs; -- 查询所有可插拨数据库
 alter pluggable database ORCLPDB open; -- 打开可插拨数据库
 alter session set container = ORCLPDB; -- 
 grant dba to WORLD_USER;
+show con_name;
+
+alter pluggable database ORCLPDB open; -- 打开可插播数据库
+alter session set container=CDB$ROOT; -- 更改当前会话为CDB$ROOT
+alter session set container=ORCLPDB; -- 更改当前会话为ORCLPDB
+
+create tablespace tablespace_ Datafile 'C:\software\app\ligenyang\virtual\oradata\orcl\orclpdb\tablespace_1.dbf' size 1024m; -- 新增表空间
+
+CREATE USER USER_ IDENTIFIED BY 123456 DEFAULT TABLESPACE tablespace_; -- 新增用户
+
+drop tablespace tablespace_ including contents and datafiles; -- 删除表空间
+
+select * from DBA_TABLESPACES;
                                                                                                    
 SELECT SYSDATE FROM DUAL; -- 当前时间 2018-11-13 15:53:07
 SELECT TRUNC(SYSDATE) FROM DUAL; -- 当前时间 2018-11-13 00:00:00
