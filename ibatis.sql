@@ -76,6 +76,12 @@ select 'private ' || (case when data_scale > 0 then 'Double ' when data_scale = 
 left join user_col_comments b on a.table_name = b.table_name and a.COLUMN_NAME = b.column_name
 where a.table_name='GDWS_FUM_PSY'
 order by column_id;
+
+-- ENTITY2
+SELECT 'T.' || A.COLUMN_NAME || ', -- ' || B.COMMENTS || ' ' || A.DATA_TYPE || DECODE(A.DATA_TYPE, 'VARCHAR2', '(' || A.DATA_LENGTH || ')', 'NUMBER', '(' || A.DATA_PRECISION || ',' || A.DATA_SCALE || ')')
+FROM SYS.USER_TAB_COLUMNS A
+LEFT JOIN SYS.USER_COL_COMMENTS B ON A.TABLE_NAME = B.TABLE_NAME AND A.COLUMN_NAME = B.COLUMN_NAME
+WHERE A.TABLE_NAME = 'GDWS_FUM_CHILD';
                                                                                                                                       
 --columns
 select '<sql id="columns">
