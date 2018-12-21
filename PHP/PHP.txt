@@ -1,0 +1,35 @@
+1. http://www.php.net/
+
+2. Current Stable PHP 7.3.0 (Changelog)
+php-7.3.0.tar.bz2 (sig) [14,440Kb] 06 Dec 2018
+sha256: 7a267daec9969a997c5c8028c350229646748e0fcc71e2f2dbb157ddcee87c67
+php-7.3.0.tar.gz (sig) [18,905Kb] 06 Dec 2018
+sha256: 391bd0f91d9bdd01ab47ef9607bad8c65e35bc9bb098fb7777b2556e2c847b11
+php-7.3.0.tar.xz (sig) [11,649Kb] 06 Dec 2018
+sha256: 7d195cad55af8b288c3919c67023a14ff870a73e3acc2165a6d17a4850a560b5
+Windows downloads
+GPG Keys for PHP 7.3
+
+PHP 7.3 (7.3.0)
+Download source code [25.57MB]
+
+VC15 x64 Non Thread Safe (2018-Dec-06 04:31:08)
+Zip [24.03MB]
+sha256: 5301e3ba616d4c01cafa8a29cb833b78efeb1e840d3efffb4696a10c462a22a3
+Debug Pack [22.85MB]
+sha256: 3e6b39e4c8375846fa09de9702b2c5f7b0f97e5b3e430434f9725028556982d2
+VC15 x64 Thread Safe (2018-Dec-06 04:31:24)
+Zip [24.16MB]
+sha256: 8bc4e2cbfe8b17b9a269925dd005a23a9b8c07f87965b9f70a69b1420845d065
+Debug Pack [22.93MB]
+sha256: 8fc3a41386e37e42f1442bd7b052cd6071861a40f6aa85a36cfc1c4c4be5e133
+VC15 x86 Non Thread Safe (2018-Dec-06 04:31:08)
+Zip [22.43MB]
+sha256: 752a1444e6d5fe25757ea9461acb5fd5a261cb9805739cfbafee37f535f6bd13
+Debug Pack [23.41MB]
+sha256: 4b85270d0d0857c53f528eacff9f72ad46626db6b97bbcdd88a0f39fc1ea1ac5
+VC15 x86 Thread Safe (2018-Dec-06 04:31:39)
+Zip [22.5MB]
+sha256: 558dc498e9e63fade8a1bfd49819e34a87ad4f327d136cda403449cebad5a513
+Debug Pack [23.49MB]
+sha256: fce997ab52554a003b8affa05bc47cc2bc2510c122638631c92a5c302167a35e
