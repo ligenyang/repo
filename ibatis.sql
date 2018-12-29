@@ -1,3 +1,18 @@
+-- resultmap
+SELECT '<result property="' || LOWER(SUBSTR(T.COLUMN_NAME, 1, 1))
+  || SUBSTR(REGEXP_REPLACE(INITCAP(T.COLUMN_NAME), '(\w)[_]', '\1'), 2)
+  || '" column="' || UPPER(T.COLUMN_NAME) || '" />'
+FROM SYS.USER_TAB_COLUMNS T
+WHERE T.TABLE_NAME='GDWS_FUM_CHILD_'
+ORDER BY T.COLUMN_ID;
+                                            
+-- columns
+SELECT '<sql id="columns">
+            <![CDATA[ ' || WM_CONCAT('T.' || T.COLUMN_NAME) || ' ]]>
+       </sql>' COLUMN_NAME
+FROM SYS.USER_TAB_COLUMNS T
+WHERE T.TABLE_NAME = 'GDWS_FUM_CHILD_' ORDER BY T.COLUMN_NAME;
+
 --update
 select '<update id="update" parameterClass="">
 <![CDATA[ UPDATE GDWS_FUM_PSY ]]>
@@ -102,11 +117,3 @@ select '#' || lower(substr(t.column_name, 1, 1)) || substr(replace(INITCAP(t.col
 ) || ') ]]>
 </insert>'
 from dual;
-
--- resultmap
-SELECT '<result property="' || LOWER(SUBSTR(T.COLUMN_NAME, 1, 1))
-  || SUBSTR(REGEXP_REPLACE(INITCAP(T.COLUMN_NAME), '(\w)[_]', '\1'), 2)
-  || '" column="' || UPPER(T.COLUMN_NAME) || '" />'
-FROM SYS.USER_TAB_COLUMNS T
-WHERE T.TABLE_NAME='GDWS_FUM_CHILD_'
-ORDER BY T.COLUMN_ID;
