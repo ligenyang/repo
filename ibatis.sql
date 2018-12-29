@@ -81,10 +81,16 @@ start with column_id=1 connect by column_id=rownum;
  from dual;
                                                                                                                            
 -- entity
-select 'private ' || (case when data_scale > 0 then 'Double ' when data_scale = 0 then 'Integer ' else 'String ' end) || lower(substr(a.column_name, 1, 1)) || substr(REGEXP_REPLACE(INITCAP(a.column_name), '(\w)[_]', '\1'), 2) || '; //' || comments from sys.user_tab_columns a 
-left join user_col_comments b on a.table_name = b.table_name and a.COLUMN_NAME = b.column_name
-where a.table_name='GDWS_FUM_PSY'
-order by column_id;
+SELECT 'private ' 
+  || (CASE WHEN A.DATA_SCALE > 0 THEN 'Double ' WHEN A.DATA_SCALE = 0 THEN 'Integer ' ELSE 'String ' END) 
+  || LOWER(SUBSTR(A.COLUMN_NAME, 1, 1)) 
+  || SUBSTR(REGEXP_REPLACE(INITCAP(A.COLUMN_NAME), '(\w)[_]', '\1'), 2) 
+  || '; // ' 
+  || B.COMMENTS 
+FROM SYS.USER_TAB_COLUMNS A 
+LEFT JOIN SYS.USER_COL_COMMENTS B ON A.TABLE_NAME = B.TABLE_NAME AND A.COLUMN_NAME = B.COLUMN_NAME
+WHERE A.TABLE_NAME = 'GDWS_FUM_CHILD_'
+ORDER BY A.COLUMN_ID;
 
 -- entity2
 SELECT 'T.' || A.COLUMN_NAME || ', -- ' || B.COMMENTS || ' ' || A.DATA_TYPE || DECODE(A.DATA_TYPE, 'VARCHAR2', '(' || A.DATA_LENGTH || ')', 'NUMBER', '(' || A.DATA_PRECISION || ',' || A.DATA_SCALE || ')')
