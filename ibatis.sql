@@ -10,8 +10,8 @@ ORDER BY T.COLUMN_ID;
 SELECT '<sql id="columns">
             <![CDATA[ ' || WM_CONCAT('T.' || T.COLUMN_NAME) || ' ]]>
        </sql>' COLUMN_NAME
-FROM SYS.USER_TAB_COLUMNS T
-WHERE T.TABLE_NAME = 'GDWS_FUM_CHILD_' ORDER BY T.COLUMN_NAME;
+FROM (SELECT O.COLUMN_NAME FROM SYS.USER_TAB_COLUMNS O
+WHERE O.TABLE_NAME = 'GDWS_FUM_CHILD2' ORDER BY O.COLUMN_ID) T;
                                             
 -- insert
 SELECT '<insert id="insert" parameterClass="">
