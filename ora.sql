@@ -79,3 +79,10 @@ SELECT TO_CHAR(SYSDATE, 'MM') FROM DUAL; -- 当前月份 11
 SELECT TO_CHAR(SYSDATE, 'D') FROM DUAL; -- 当前星期的第几天 3
 SELECT TO_CHAR(SYSDATE, 'DAY') FROM DUAL; -- 当前星期几 星期二
 SELECT TO_CHAR(SYSDATE, 'YYYY') || '-01-01' FROM DUAL; -- 当年第一天 2018-01-01
+                                                                                                   
+                                                                                                   
+                                                                                                   
+-- 毫秒数转日期时间
+SELECT TO_CHAR(1406538765000 / (1000 * 60 * 60 * 24) + TO_DATE('1970-01-01 08:00:00', 'YYYY-MM-DD HH:MI:SS'), 'YYYY-MM-DD HH24:MI:SS') FROM DUAL;
+-- 日期时间转毫秒数
+SELECT TO_NUMBER(TO_DATE('2014-07-28 17:12:45', 'YYYY-MM-DD HH24:MI:SS') - TO_DATE('1970-01-01 8:0:0', 'YYYY-MM-DD HH24:MI:SS')) * 24 * 60 * 60 * 1000 FROM DUAL;
