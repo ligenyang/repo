@@ -34,6 +34,16 @@ public class ExcelParser {
      * @return List<Map<String, String>>
      */
     public static List<Map<String, String>> parseExcel(String filePath) {
+        
+        /*String fileType = filePath.substring(filePath.lastIndexOf("."));
+        List<Map<String, String>> mapList = null;
+        if(".xls".equals(fileType)) {
+            mapList = parseExcelXLS(filePath);
+        }
+        if(".xlsx".equals(fileType)) {
+            mapList = parseExcelXLSX(filePath);
+        }*/
+        
         Path path = Paths.get(filePath);
         String contentType = null;
         try {
