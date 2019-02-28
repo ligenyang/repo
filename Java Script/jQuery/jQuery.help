@@ -1,1 +1,69 @@
 https://jquery.com/
+    
+    // Ajax 上传文件
+    _d(':button').on('click', function () {
+        var file = _d(':file')[0].files[0];
+        if(file === undefined) {
+            $(this).alertmsg('error', '请先选择文件');
+            return;
+        }
+        var formData = new FormData();
+        formData.append('file', _d(':file')[0].files[0]);
+        formData.append('fname', _d('[name="fname"]').val());
+        $.ajax({
+            async: true,
+            type: 'POST',
+            url: '${ctx}/admin/system/upload!uploadFile.do',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                if(data.flag) {
+                    _d(':button').bjuiajax('doAjax', {
+                        type: 'POST',
+                        url: '${ctx}/admin/poor/poor!fileUpload.do',
+                        data: {'url': data.url, 'operationType': '1'},
+                        callback: function(msg) {
+                            if(msg.statusCode === '200') {
+                                $(this).alertmsg('correct', '上传成功');
+                                _d().dialog('closeCurrent');
+                            } else {
+                                $(this).alertmsg('error', msg.message);
+                            }
+                        }
+                    });
+                } else {
+                    $(this).alertmsg('error', d.message);
+                }
+            }
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
