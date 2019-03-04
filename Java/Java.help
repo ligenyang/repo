@@ -1,0 +1,20 @@
+    // 判断属性是否全为null
+    public static boolean isAllFieldNull(Object obj) {
+        Class stuCla = (Class) obj.getClass();// 得到类对象
+        Field[] fs = stuCla.getDeclaredFields();//得到属性集合
+        boolean flag = true;
+        for (Field f : fs) {
+            f.setAccessible(true);
+            Object val = null;
+            try {
+                val = f.get(obj);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            if(val != null) {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
+    }
