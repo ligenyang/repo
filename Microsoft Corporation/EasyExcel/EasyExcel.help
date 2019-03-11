@@ -1,0 +1,5 @@
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>easyexcel</artifactId>
+    <version>{latestVersion}</version>
+</dependency>
