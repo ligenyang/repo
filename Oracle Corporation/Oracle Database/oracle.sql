@@ -2,6 +2,15 @@ select s.username, l.object_id, l.session_id, s.serial#, s.lockwait, s.status, s
 select sql_text from v$sql where hash_value in (select sql_hash_value from v$session where sid in (select session_id from v$locked_object));
 alter system kill session '68,24231'; --SID,serial#
 
+select * from ncms_individual_account t -- 查询重复数据
+where (t.name, t.individual_account_amount, t.payment_address)
+      in (select a.name, a.individual_account_amount, a.payment_address
+          from ncms_individual_account a where  a.person_code is null and a.create_name = '李燕'
+                                                and a.state = 0 and a.flag = 1 --and --a.update_time = 1553834407
+          group by   a.name,a.individual_account_amount, a.payment_address having count(*) > 1)
+  and rowid not in (select min(rowid) from ncms_individual_account group by name, individual_account_amount, payment_address having count(*)>1);
+
+                                                                                                   
 with
     TB_CHSS_GRJBXX_ as ( 
       select
