@@ -1,3 +1,27 @@
+access-bridge-64.jar
+charsets.jar
+cldrdata.jar Common Locale Data Repository
+deploy.jar
+dnsns.jar
+jaccess.jar
+javaws.jar Java Web Start
+jce.jar Java加密扩展
+jfr.jar java flight recorder 飞行记录器
+jfxrt.jar
+jfxswt.jar
+jsse.jar java secure socket extension
+localedata.jar
+management-agent.jar
+nashorn.jar
+plugin.jar
+resources.jar
+rt.jar
+sunec.jar
+sunjce_provider.jar
+sunmscapi.jar
+sunpkcs11.jar Public-Key Cryptography Standard 公钥加密标准
+zipfs.jar Zip File System Provider Zip文件系统 
+    
     // 判断属性是否全为null
     public static boolean isAllFieldNull(Object obj) {
         Class stuCla = (Class) obj.getClass();// 得到类对象
