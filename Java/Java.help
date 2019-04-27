@@ -1,3 +1,4 @@
+1. Jar包
 access-bridge-64.jar
 charsets.jar
 cldrdata.jar Common Locale Data Repository
@@ -21,6 +22,13 @@ sunjce_provider.jar
 sunmscapi.jar
 sunpkcs11.jar Public-Key Cryptography Standard 公钥加密标准
 zipfs.jar Zip File System Provider Zip文件系统 
+
+
+
+2. 环境变量
+JAVA_HOME C:\jdk1.5.0_06
+PATH %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin
+CLASSPATH .;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar
     
     // 判断属性是否全为null
     public static boolean isAllFieldNull(Object obj) {
