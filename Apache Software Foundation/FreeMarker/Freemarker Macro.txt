@@ -1,0 +1,65 @@
+1. 宏文件:  /WEB-INF/template/common/common.ftl
+<#macro html title>
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+		<title>${title}</title>
+		<link rel="stylesheet" rev="stylesheet" href="/oa/file/css.css" type="text/css" media="all" />
+    </head>
+
+    <body>
+		<#nested/>
+    </body>
+    </html>
+</#macro>
+
+2. 定义宏: freemarker.properties
+auto_import=/WEB-INF/template/common/common.ftl as c
+
+或: <#import "/WEB-INF/template/common/common.ftl" as c>
+
+3. 引用宏: test.ftl
+<@c.html title="OA"> 
+	你的内容
+</@c.html>
+
+4. 宏语法: 
+<#macro name param1 param2 ... paramN>
+...
+<#nested loopvar1, loopvar2, ..., loopvarN>
+...
+<#return>
+...
+</#macro>
+
+5. 宏用例:
+用例 1: 
+<#macro test foo bar="Bar" baaz=-1>
+Test text, and the params: ${foo}, ${bar}, ${baaz}
+</#macro>
+<@test foo="a" bar="b" baaz=5*5-2/>
+<@test foo="a" bar="b"/>
+<@test foo="a" baaz=5*5-2/>
+<@test foo="a"/>
+输出结果: 
+Test text, and the params: a, b, 23
+Test text, and the params: a, b, -1
+Test text, and the params: a, Bar, 23
+Test text, and the params: a, Bar, -1
+
+用例 2: 
+<#macro list title items>
+<p>${title?cap_first}:
+<ul>
+	<#list items as x>
+		<li>${x?cap_first}
+	</#list>
+</ul>
+</#macro>
+<@list items=["mouse", "elephant", "python"] title="Animals"/>
+输出结果: 
+<p>Animals:
+<ul>
+	<li>Mouse
+	<li>Elephant
+	<li>Python
+</ul>
